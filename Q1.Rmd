@@ -1,0 +1,92 @@
+---
+title: "Q1"
+author: "me!"
+date: "6/5/2021"
+output:
+  word_document: default
+  html_document: default
+---
+
+
+## Question 1
+### Q1.1
+The difference between the two is that a research paper is about an original research conducted by the writers of the paper, and a review paper is not. Rather, a review paper details the findings of several researches in order to explain our current understanding of a certain topic.
+
+### Q1.2
+A journal’s impact factor is the yearly average number of citations of articles published in the last two year in the journal.
+
+### Q1.3 
+The two papers we chose:
+
+Research paper: “Gastroesophageal reflux GWAS identifies risk loci that also associate with subsequent severe esophageal diseases”
+
+- Author’s name: Jiyuan An, Puya Gharahkhani, Matthew H. Law, Jue-Sheng Ong, Xikun Han, Catherine M. Olsen, Rachel E. Neale, John Lai, Tom L. Vaughan, Ines Gockel, René Thieme, Anne C. Böhmer, Janusz Jankowski, Rebecca C. Fitzgerald, Johannes Schumacher, Claire Palles, BEACON, 23andMe Research Team, David C. Whiteman, and Stuart MacGregor
+
+- Journal’s name: Nature Communications
+
+- Publication date: December 9th, 2016
+
+Review paper: “Five Years of GWAS Discovery”
+
+- Author’s name: Peter M Visscher, Matthew A Brown, Mark I McCarthy, Jian Yang
+
+- Journal’s name: The American Journal of Human Genetics
+
+- Publication date: September 16th, 2019
+
+### Q1.4 
+
+#### Q1.4.1
+The impact factor of each journal:
+
+Nature Communications - 12.121 at the time the research was published. 
+
+The American Journal of Human Genetics – 10.502 today and 13.061 at the time the review was published.
+
+#### Q1.4.2
+For the research paper there are 15 affiliations and for the review paper there are 5 affiliations.
+
+### Q1.5
+#### Q1.5.1
+The trait that was genes which contribute to the development of Gastroesophageal reflux disease (GERD) in humans.
+
+#### Q1.5.2
+The authors used 3 databases:
+
+- QSKIN
+
+- UK Biobank
+
+- samples from the '23andMe' database
+
+
+#### Q1.5.3 
+The authors found a set of SNPs which cause the trait: 
+
+“For all datasets (including QSkin), the correlation between the logarithmic scale odds ratios (log ORs) of the peak single nucleotide polymorphisms (SNPs) was also high (Supplementary Data 1). The strong genetic correlations across the GWAS results justified a meta-analysis of these data sets (UKBB where the three phenotype definitions were first combined and run as one analysis to build the largest nonoverlapping case–control set, 23andMe, and QSkin).”
+
+“Gene-based tests (Supplementary Data 5) were conducted using the MAGMA18 software based on the per-SNP GWAS summary results for GERD. We identified 49 genes that are associated with GERD after Bonferroni correction for 19,427 genes tested (P < 2.57 × 10−6);”
+
+#### Q1.5.4
+As we can see, the minimal effective size that can be found in a sample of 385276 with power=0.9 is about 0.0256
+```{r}
+sample_size = 385276
+  
+f=0.1
+b.alt = seq(0.025,0.026,0.0005)
+sigma=sqrt(1-2*f*(1-f)*b.alt^2)
+#ns = seq(500,4000,10)
+ses=sigma/sqrt(sample_size*2*f*(1-f))
+q.thresh = qchisq(5e-8,df=1,ncp=0,lower=F)
+pwr=pchisq(q.thresh,df=1,ncp=(b.alt/ses)^2,lower=F)
+plot(b.alt,pwr,col="darkgreen",xlab="effect size",ylab="power",t="l",lwd=1.5)
+abline(h=0.9,lty=2)
+
+
+
+```
+
+
+
+
+
